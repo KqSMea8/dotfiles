@@ -54,6 +54,7 @@ fi
 # hard links for zshrc
 rm -f ~/.zshrc
 ln ~/dotfiles/.zshrc ~/.zshrc
+
 # links for neovim
 # https://robots.thoughtbot.com/my-life-with-neovim#installing-and-configuring-neovim
 mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
@@ -67,6 +68,17 @@ ln ~/dotfiles/init.vim ~/.vimrc
 # node
 if [ ! -d ~/.nvm ]; then
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+fi
+
+if ! exists fd; then
+  brew install fd
+fi
+
+# https://github.com/junegunn/fzf#using-homebrew-or-linuxbrew
+# To install useful key bindings and fuzzy completion:
+if ! exists fzf; then
+  brew install fzf
+  $(brew --prefix)/opt/fzf/install
 fi
 
 if ! exists node; then

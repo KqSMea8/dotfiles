@@ -154,6 +154,14 @@ function precmd() {
 export PATH=$HOME/.jenv/bin:$PATH
 eval "$(jenv init -)"
 jenv enable-plugin export >/dev/null 2>&1
+export PATH=$PATH:$JAVA_HOME/bin
+
+# android
+export ANDROID_HOME="/Users/zyy/Library/Android/sdk"
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+# https://medium.com/js-features/launch-android-emulator-from-console-failure-eb43a1115cb5
+alias emulator="${ANDROID_SDK_ROOT}/tools/emulator"
 
 # go
 # export GOPATH=$(go env GOPATH)
@@ -204,5 +212,12 @@ alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 # vim
 if type nvim > /dev/null 2>&1; then
-  alias vim='nvim'
+  # alias vim='nvim'
 fi
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# https://github.com/junegunn/fzf#respecting-gitignore
+# Setting fd as the default source for fzf
+# You can use fd, ripgrep, or the silver searcher instead of the default find command to traverse the file system while respecting .gitignore.
+export FZF_DEFAULT_COMMAND='fd --type f'
